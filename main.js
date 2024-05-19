@@ -13,6 +13,7 @@ try {
 			}
 		})
 		window.loadFile("public/index.html")
+		window.setMenu(null)
 		ipcMain.on("save", (event, {path, data}) => writeFile(path, data, "utf-8"))
 		ipcMain.on("about", () => {
 			if(aboutWindow) return
