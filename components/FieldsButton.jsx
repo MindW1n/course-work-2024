@@ -36,7 +36,6 @@ export default function FieldsButton({fields, setFields}) {
 						/>
 					)
 				}
-				
 			</AnimatePresence>
 		</>
 	)

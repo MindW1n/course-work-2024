@@ -5,11 +5,13 @@ import Toolbar from "../components/Toolbar"
 import Table from "../components/Table"
 import Subcontractor from "../libs/subcontractor"
 import Database from "../libs/database"
+import GraphModal from "../components/GraphModal"
 export default function Page() {
 	const [data, setData] = useState({})
 	const [selectedDatabaseId, setSelectedDatabaseId] = useState()
 	const [selectedIds, setSelectedIds] = useState([])
 	const [showing, setShowing] = useState({take: 20, skip: 0})
+	const [isGraphModalShown, setIsGraphModalShown] = useState(false)
 	const [fields, setFields] = useState(
 		["id", "fullName", "qualification", "experience", "phone", "email", "salary", "birthDate"]
 	)
@@ -64,6 +66,7 @@ export default function Page() {
 				onRefresh={
 					() => window.api.send("refresh", {id: selectedDatabaseId, path: data[selectedDatabaseId].path})
 				}
+				onShowGraph={() => setIsGraphModalShown(true)}
 			/>
 			<Table
 				id={selectedDatabaseId}
@@ -74,6 +77,15 @@ export default function Page() {
 				showing={showing}
 				fields={fields}
 			/>
+			{
+				selectedDatabaseId >= 0 && (
+					<GraphModal
+						isShown={isGraphModalShown}
+						setIsShown={setIsGraphModalShown}
+						database={data[selectedDatabaseId]}
+					/>
+				)
+			}
 		</div>
 	)
 }

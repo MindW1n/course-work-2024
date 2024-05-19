@@ -24,7 +24,7 @@ const fadeInOut = {
 	}
 }
 export default function Toolbar(
-	{onAdd, onDelete, numberToDelete, fields, setFields, showing, of, setShowing, onRefresh}
+	{onAdd, onDelete, numberToDelete, fields, setFields, showing, of, setShowing, onRefresh, onShowGraph}
 ) {
 	return (
 		<div className="min-h-14 border-b-2 border-[#e2e8ef] flex flex-row items-center">
@@ -45,6 +45,12 @@ export default function Toolbar(
 						onClick={onAdd}
 					>
 						Add record
+					</button>
+					<button
+						className="bg-[#4a5568] rounded-md h-8 px-2 text-white font-semibold hover:bg-black transition-colors duration-300"
+						onClick={onShowGraph}
+					>
+						Graph
 					</button>
 					<AnimatePresence>
 						{
